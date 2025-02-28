@@ -4,57 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-        .calculator {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px gray;
-        }
-        .calculator input {
-            grid-column: span 4;
-            height: 50px;
-            font-size: 1.5rem;
-            text-align: right;
-            padding: 5px;
-        }
-        button {
-            height: 60px;
-            font-size: 1.5rem;
-            background: lightslategray;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 50%;
-            transition: 0.2s;
-        }
-        button:hover {
-            background: darkslategray;
-        }
-        button:active {
-            transform: scale(0.95);
-        }
-        .equal {
-            height: 60px;
-            font-size: 1.5rem;
-            background: orange;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 50%;
-            transition: 0.2s;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="calculator">
@@ -80,39 +30,6 @@
         <button onclick="appendValue('.')">.</button>
         <button class="equal" onclick="calculateResult()">=</button>
     </div>
-    <script>
-        function appendValue(value) {
-    let display = document.getElementById('display');
-    let lastChar = display.value.slice(-1);
-
-    // Prevent multiple operators in a row
-    if (['+', '-', '*', '/', '%'].includes(value) && ['+', '-', '*', '/', '%'].includes(lastChar)) {
-        return;
-    }
-
-    display.value += value;
-}
-
-function clearDisplay() {
-    document.getElementById('display').value = '';
-}
-
-function backspace() {
-    let display = document.getElementById('display');
-    display.value = display.value.slice(0, -1); // Remove last character
-}
-
-function calculateResult() {
-    let display = document.getElementById('display').value;
-    try {
-        // Convert percentages to division by 100
-        display = display.replace(/(\d+)%/g, "($1/100)");
-
-        document.getElementById('display').value = new Function('return ' + display)();
-    } catch {
-        document.getElementById('display').value = 'Error';
-    }
-}
-    </script>
+    <script src="c.js"></script>
 </body>
 </html>
